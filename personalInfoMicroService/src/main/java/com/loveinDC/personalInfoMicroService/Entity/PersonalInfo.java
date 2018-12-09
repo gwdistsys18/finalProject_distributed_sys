@@ -23,16 +23,12 @@ public class PersonalInfo {
 	private String birthDate;
 	@Column(name = "gender")
 	private Character gender;
-	@Column(name = "phoneNumber", length = 10)
+	@Column(name = "phoneNumber", length = 20)
 	private String phoneNumber;
-	@Column(name = "email")
-	private String email;
 	@Column(name = "collage")
 	private String collage;
 	@Column(name = "major", length = 30)
 	private String major;
-	@Column(name = "infoCompleteness", nullable = false)
-	private Boolean infoCompleteness = false;
 	
 	//Getters and Setters
 	public Integer getUid() {
@@ -77,12 +73,6 @@ public class PersonalInfo {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getCollage() {
 		return collage;
 	}
@@ -95,24 +85,18 @@ public class PersonalInfo {
 	public void setMajor(String major) {
 		this.major = major;
 	}
-	public Boolean getInfoCompleteness() {
-		return infoCompleteness;
-	}
-	public void setInfoCompleteness(Boolean infoCompleteness) {
-		this.infoCompleteness = infoCompleteness;
-	}
 	
 	//ToString
 	@Override
 	public String toString() {
 		return "PersonalInfo [uid=" + uid + ", firstName=" + firstName + ", lastName=" + lastName + ", nickName="
 				+ nickName + ", birthDate=" + birthDate + ", gender=" + gender + ", phoneNumber=" + phoneNumber
-				+ ", email=" + email + ", collage=" + collage + ", major=" + major + ", infoCompleteness="
-				+ infoCompleteness + "]";
+				+ ", collage=" + collage + ", major=" + major + "]";
 	}
 	
 	//Constructor
 	public PersonalInfo() {
 		
 	}
+
 }
