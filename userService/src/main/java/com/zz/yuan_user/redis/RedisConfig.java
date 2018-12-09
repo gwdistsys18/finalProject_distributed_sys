@@ -9,7 +9,7 @@ public class RedisConfig {
     private String host;
     private int port;
     private int timeout; // 秒
-    //private String password;
+    private String password;
     private int poolMaxTotal;
     private int poolMaxIdle;
     private int poolMaxWait;
@@ -38,13 +38,13 @@ public class RedisConfig {
         this.timeout = timeout;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getPoolMaxTotal() {
         return poolMaxTotal;
