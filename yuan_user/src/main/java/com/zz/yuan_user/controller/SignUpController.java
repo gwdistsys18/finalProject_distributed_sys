@@ -23,16 +23,11 @@ public class SignUpController {
     @Autowired
     UserService userService;
 
-    @RequestMapping
-    public String tosignup(){
-        return "signup";
-    }
-
     @PostMapping("/do_signup")
     @ResponseBody
-    public Result<Boolean> signUp(SignUpVo signUpVo){
+    public Result<String> signUp(SignUpVo signUpVo){
         boolean res = userService.signup(signUpVo);
-        if(res) return Result.success(true);
+        if(res) return Result.success("signup success");
         return Result.error(CodeMsg.SERVER_ERROR);
     }
 }

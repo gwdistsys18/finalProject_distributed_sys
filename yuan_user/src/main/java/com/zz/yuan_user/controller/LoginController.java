@@ -21,14 +21,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping
-    public String toLogin(){
-        return "login";
-    }
 
     @RequestMapping("/do_login")
     @ResponseBody
-    public Result<Boolean> do_login(@Valid LoginVo loginVo, HttpServletResponse response){
+    public Result<String> do_login(@Valid LoginVo loginVo, HttpServletResponse response){
         // log.info(loginVo.toString());\
 //        //校验参数
 //        String passInput = loginVo.getPassword();
@@ -44,6 +40,6 @@ public class LoginController {
 //        }
         //登录
         userService.login(response,loginVo);
-        return Result.success(true);
+        return Result.success("login success");
     }
 }
