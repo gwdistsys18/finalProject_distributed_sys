@@ -2,7 +2,11 @@ package com.loveinDC.personalInfoMicroService.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,15 +15,48 @@ import org.springframework.web.bind.annotation.RestController;
 import com.loveinDC.personalInfoMicroService.Entity.PersonalInfo;
 import com.loveinDC.personalInfoMicroService.Service.PersonalInfoService;
 
+import RedisService.RedisSerialization;
+import RedisService.UserSession;
+
 @Component
 @RestController
 @RequestMapping("/personalInfo")
 public class PersonalInfoController {
 	@Autowired
 	private PersonalInfoService personalInfoService;
+	@Autowired
+	StringRedisTemplate stringRedisTemplate;
 	
 	@RequestMapping("/create")
-	public String createPersonalInfo(@RequestParam(value = "uid") Integer uid) throws Exception{
+	public String createPersonalInfo(HttpServletRequest httpServletRequest) throws Exception{
+		//get user's cookies
+		Cookie[] cookies = httpServletRequest.getCookies();
+		String userRedisKey = "";
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("loveinDC_token")) {
+				userRedisKey = cookie.getValue();
+				break;
+			}
+		}
+		//get user session from redis
+		String serializedUser = "";
+		if(stringRedisTemplate.hasKey(userRedisKey)) {
+			serializedUser = stringRedisTemplate.opsForValue().get(userRedisKey);
+		} else {
+			throw new Exception();
+		}
+		
+		UserSession userSession = RedisSerialization.antiSerialization(serializedUser, UserSession.class);
+		
+		//get user id
+		Integer uid = 0;
+		if (userSession == null) {
+			throw new Exception();
+		} else {
+			uid = userSession.getId();
+		}
+		
+		
 		PersonalInfo personInfo= new PersonalInfo();
 		personInfo.setUid(uid);
 		personalInfoService.create(personInfo);
