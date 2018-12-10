@@ -26,6 +26,7 @@ public class LoginController {
     @PostMapping
     @ResponseBody
     public Result<String> do_login(@Valid LoginVo loginVo, HttpServletResponse response){
+
         // log.info(loginVo.toString());\
 //        //校验参数
 //        String passInput = loginVo.getPassword();
