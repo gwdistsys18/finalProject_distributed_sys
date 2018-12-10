@@ -1,5 +1,58 @@
 #  	API
 
+## User Authentication
+* Log in
+```
+POST /api/login
+```
+
+Params
+
+```
+json
+{
+    "username":String ,
+    "password":String
+}
+```
+
+Return
+```
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        
+    }
+}
+```
+
+* Sign up
+```
+POST /api/signup
+```
+
+Params
+
+```
+json
+{
+    "username":String ,
+    "password":String
+}
+```
+
+Return
+```
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        
+    }
+}
+```
+
 ## User Perference
 
 * Get User Preference By Id
