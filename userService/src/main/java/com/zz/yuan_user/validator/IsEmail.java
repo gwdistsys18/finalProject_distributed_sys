@@ -11,7 +11,8 @@ import java.lang.annotation.*;
 public @interface IsEmail {
     boolean required() default true;
 
-    String message() default "手机号码格式不对";
+    String message() default "not an email";
+
 
     Class<?>[] groups() default {};
 

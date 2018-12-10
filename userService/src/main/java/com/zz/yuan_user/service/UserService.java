@@ -11,6 +11,7 @@ import com.zz.yuan_user.util.MD5Util;
 import com.zz.yuan_user.util.UUIDUtil;
 import com.zz.yuan_user.vo.LoginVo;
 import com.zz.yuan_user.vo.SignUpVo;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.Random;
 
 @Service
 public class UserService {
@@ -26,7 +28,7 @@ public class UserService {
     @Autowired
     private RedisService redisService;
 
-    public final static String TOKEN_NAME = "zz_token";
+    public final static String TOKEN_NAME = "loveinDC_token";
 
     public User getById(Long id){
         return userDao.getById(id);
@@ -71,7 +73,7 @@ public class UserService {
 
     public boolean signup(SignUpVo signUpVo){
         if (signUpVo == null) throw new GlobalException(CodeMsg.SERVER_ERROR);
-        String salt = "zz_2_salt";
+        String salt = "loveinDC_2_salt" + RandomStringUtils.random(3, 'l','o','v','e','d','c');
         User user = new User();
         user.setSalt(salt);
         user.setUsername(signUpVo.getUsername());
@@ -83,5 +85,6 @@ public class UserService {
         int res = userDao.insertUser(user);
         return true;
     }
+
 }
 

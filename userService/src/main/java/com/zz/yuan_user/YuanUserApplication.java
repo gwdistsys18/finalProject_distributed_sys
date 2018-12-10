@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class YuanUserApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(YuanUserApplication.class, args);
 	}
