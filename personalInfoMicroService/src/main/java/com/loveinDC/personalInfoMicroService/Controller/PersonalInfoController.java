@@ -62,7 +62,7 @@ public class PersonalInfoController {
 //			@RequestParam(value = "nickName", required = false) String nickName,
 //			@RequestParam(value = "birthDate", required = false) String birthDate,
 //			@RequestParam(value = "gender", required = false) Character gender,
-//			@RequestParam(value = "collage", required = false) String collage,
+//			@RequestParam(value = "college", required = false) String college,
 //			@RequestParam(value = "major", required = false) String major) {
 		Integer uid = getUid(httpServletRequest);
 		PersonalInfo personInfo = personalInfoService.findByUid(uid);
@@ -86,9 +86,9 @@ public class PersonalInfoController {
 		if (gender != null) {
 			personInfo.setGender(gender.charAt(0));
 		}
-		String collage = httpServletRequest.getParameter("collage");
-		if (collage != null) {
-			personInfo.setCollage(collage);
+		String college = httpServletRequest.getParameter("college");
+		if (college != null) {
+			personInfo.setCollege(college);
 		}
 		String major = httpServletRequest.getParameter("major");
 		if (major != null) {
@@ -101,8 +101,8 @@ public class PersonalInfoController {
 		return personalInfoService.update(personInfo);
 	}
 	
-	@RequestMapping("/findByUid")
-	public PersonalInfo findPersonalInfoByUid(HttpServletRequest httpServletRequest) throws Exception {
+	@RequestMapping("/findSelf")
+	public PersonalInfo findSelfPersonalInfo(HttpServletRequest httpServletRequest) throws Exception {
 		Integer uid = getUid(httpServletRequest);
 		return personalInfoService.findByUid(uid);
 	}
