@@ -25,8 +25,8 @@ public class PersonalInfo {
 	private Character gender;
 	@Column(name = "phoneNumber", length = 20)
 	private String phoneNumber;
-	@Column(name = "collage")
-	private String collage;
+	@Column(name = "college")
+	private String college;
 	@Column(name = "major", length = 30)
 	private String major;
 	
@@ -73,11 +73,11 @@ public class PersonalInfo {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getCollage() {
-		return collage;
+	public String getCollege() {
+		return college;
 	}
-	public void setCollage(String collage) {
-		this.collage = collage;
+	public void setCollege(String college) {
+		this.college = college;
 	}
 	public String getMajor() {
 		return major;
@@ -91,7 +91,7 @@ public class PersonalInfo {
 	public String toString() {
 		return "PersonalInfo [uid=" + uid + ", firstName=" + firstName + ", lastName=" + lastName + ", nickName="
 				+ nickName + ", birthDate=" + birthDate + ", gender=" + gender + ", phoneNumber=" + phoneNumber
-				+ ", collage=" + collage + ", major=" + major + "]";
+				+ ", college=" + college + ", major=" + major + "]";
 	}
 	
 	//Constructor
