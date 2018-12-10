@@ -25,7 +25,7 @@ Programming Laguage: JAVA, HTML, CSS and Javascript
 The first stage will implement login, signup, personal infomation update and prefernce information update.
 
 ## Contribution
-Yunpeng Li: Developed the personalInfoMicroService part. Deployed it in to a docker container in AWS server.
-Linghai xu: Developed the PersonalPreferenceService part. Deployed it in to a docker container in AWS server.
-Zhuo Zheng: Developed the userService part. Deployed it in to a docker container in AWS server.
-Bowen Shi: Developed the frontend part.
+Yunpeng Li: Developed the personalInfoMicroService part. Deployed it in to a docker container in AWS server.  
+Linghai xu: Developed the PersonalPreferenceService part. Deployed it in to a docker container in AWS server.  
+Zhuo Zheng: Developed the userService part. Deployed it in to a docker container in AWS server.  
+Bowen Shi: Developed the frontend part.  
