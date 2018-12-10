@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface PersonalInfoJpaDAO extends JpaRepository<PersonalInfo,Long> {
-	PersonalInfo findByUid(Integer uid);
+	PersonalInfo findById(Integer id);
 	PersonalInfo save(PersonalInfo personInfo);
 	List<PersonalInfo> findAll();
 	@Modifying
 	@Transactional
-	@Query("delete from PersonalInfo pi where pi.uid = ?1")
-	int deleteByUid(Integer uid);
+	@Query("delete from PersonalInfo pi where pi.id = ?1")
+	int deleteById(Integer id);
 }
