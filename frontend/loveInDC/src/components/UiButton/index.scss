@@ -1,0 +1,20 @@
+.ui-button {
+  min-width: 64px;
+  height: 40px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  outline: none;
+  vertical-align: middle;
+  background: 0 0;
+  border-radius: 2px;
+  cursor: pointer;
+  &.ui-button--primary {
+    background-color: #22d18e;
+    color: #fff;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #a6aaad;
+    }
+  }
+}
