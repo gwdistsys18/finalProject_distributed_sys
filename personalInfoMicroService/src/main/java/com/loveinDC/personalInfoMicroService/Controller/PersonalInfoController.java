@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loveinDC.personalInfoMicroService.Entity.PersonalInfo;
@@ -19,9 +18,9 @@ import com.loveinDC.personalInfoMicroService.Service.PersonalInfoService;
 import RedisService.RedisSerialization;
 import RedisService.UserSession;
 
-@Component
 @RestController
 @RequestMapping("/api/personalInfo")
+@CrossOrigin(origins = "*",allowCredentials = "true")
 public class PersonalInfoController {
 	@Autowired
 	private PersonalInfoService personalInfoService;
@@ -35,12 +34,12 @@ public class PersonalInfoController {
 	
 	@RequestMapping("/create")
 	public String createPersonalInfo(HttpServletRequest httpServletRequest) throws Exception{
-		Integer uid = getUid(httpServletRequest);
+		Integer id = getId(httpServletRequest);
 		PersonalInfo personInfo= new PersonalInfo();
-		personInfo.setUid(uid);
+		personInfo.setId(id);
 		personalInfoService.create(personInfo);
 		try {
-			return personalInfoService.findByUid(uid).getUid().toString();
+			return personalInfoService.findById(id).getId().toString();
 		}catch(NullPointerException e) {
 			throw new NullPointerException();
 		}
@@ -48,24 +47,17 @@ public class PersonalInfoController {
 	
 	@RequestMapping("/delete")
 	public String deletePersonalInfo(HttpServletRequest httpServletRequest) throws Exception {
-		Integer uid = getUid(httpServletRequest);
-		int deleteResult = personalInfoService.delete(uid);
+		Integer id = getId(httpServletRequest);
+		int deleteResult = personalInfoService.delete(id);
 		if(deleteResult == 1 ) return "Delete successed";
 		else return "Delete failed";
 	}
 	
 	@PostMapping("/update")
 	public PersonalInfo updatePersonalInfo(HttpServletRequest httpServletRequest) throws Exception {	
-//			@RequestParam(value = "uid", required = true) Integer uid,
-//			@RequestParam(value = "firstName", required = false) String firstName,
-//			@RequestParam(value = "lastName", required = false) String lastName,
-//			@RequestParam(value = "nickName", required = false) String nickName,
-//			@RequestParam(value = "birthDate", required = false) String birthDate,
-//			@RequestParam(value = "gender", required = false) Character gender,
-//			@RequestParam(value = "college", required = false) String college,
-//			@RequestParam(value = "major", required = false) String major) {
-		Integer uid = getUid(httpServletRequest);
-		PersonalInfo personInfo = personalInfoService.findByUid(uid);
+		
+		Integer id = getId(httpServletRequest);
+		PersonalInfo personInfo = personalInfoService.findById(id);
 		String firstName = httpServletRequest.getParameter("firstName");
 		if (firstName != null) {
 			personInfo.setFirstName(firstName);
@@ -103,8 +95,8 @@ public class PersonalInfoController {
 	
 	@RequestMapping("/findSelf")
 	public PersonalInfo findSelfPersonalInfo(HttpServletRequest httpServletRequest) throws Exception {
-		Integer uid = getUid(httpServletRequest);
-		return personalInfoService.findByUid(uid);
+		Integer id = getId(httpServletRequest);
+		return personalInfoService.findById(id);
 	}
 	
 	@RequestMapping("/findAll")
@@ -112,14 +104,14 @@ public class PersonalInfoController {
 		return personalInfoService.findAll();
 	}
 	
-	private Integer getUid(HttpServletRequest httpServletRequest) throws Exception {
-		Integer uid = 0;
+	private Integer getId(HttpServletRequest httpServletRequest) throws Exception {
+		Integer id = 0;
 		//get user's cookies
 			Cookie[] cookies = httpServletRequest.getCookies();
 			String userRedisKey = "";
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("loveinDC_token")) {
-					userRedisKey = cookie.getValue();
+					userRedisKey = "UserKey:" + cookie.getValue();
 					break;
 				}
 			}
@@ -137,8 +129,8 @@ public class PersonalInfoController {
 			if (userSession == null) {
 				throw new Exception();
 			} else {
-				uid = userSession.getId();
+				id = userSession.getId();
 			}
-		return uid;
+		return id;
 	}
 }
