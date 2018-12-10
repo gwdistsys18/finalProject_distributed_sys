@@ -9,11 +9,13 @@ class UiInput extends Component {
   }
 
   render() {
+    let {type, name, value} = this.props;
+    let {handleChange} = this.props;
     return (
       <div className="ui-input">
-        <input type={this.props.typeName} placeholder={this.props.name} 
-          value={ this.props.value }
-          onChange={e => this.props.handleChange(e.target.value)}/>
+        <input type={type} placeholder={name} 
+          value={ value }
+          onChange={e => handleChange(e.target.value)}/>
       </div>
     )
   }
@@ -23,11 +25,11 @@ UiInput.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   handleChange: PropTypes.func,
-  typeName: PropTypes.string
+  type: PropTypes.string
 }
 
 UiInput.defaultProps = {    
-  typeName: 'text'
+  type: 'text'
 }
 
 export default UiInput;

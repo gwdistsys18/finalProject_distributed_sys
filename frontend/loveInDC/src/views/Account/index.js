@@ -35,16 +35,18 @@ class Account extends Component {
                 onClick={() => this.switchTabs(item)}>{item}</li>;
     });
     return (
-      <div className="accounts-settings">
-        <div className="left-side">
-          <ul>
-            {leftSide}
-          </ul>
-        </div>
-        <div className="right-side">
-          {selectedTab == "Account Setting" ? <AccountSetting title={"Account Setting"}/> : ""}
-          {selectedTab == "Change Password" ? <ChangePassword title={"Change Password"}/> : ""}
-          {selectedTab == "Preferences" ? <Preferences title={"Preferences"}/> : ""}
+      <div className="account-wrapper">
+        <div className="account-setting">
+          <div className="left-side">
+            <ul>
+              {leftSide}
+            </ul>
+          </div>
+          <div className="right-side">
+            {selectedTab == "Account Setting" ? <AccountSetting title={"Account Setting"}/> : ""}
+            {selectedTab == "Change Password" ? <ChangePassword title={"Change Password"}/> : ""}
+            {selectedTab == "Preferences" ? <Preferences title={"Preferences"}/> : ""}
+          </div>
         </div>
       </div>
     )

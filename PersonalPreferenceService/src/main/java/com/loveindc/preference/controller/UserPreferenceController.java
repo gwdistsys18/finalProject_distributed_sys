@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/userpreference")
+@CrossOrigin(origins = "*",allowCredentials = "true")
 public class UserPreferenceController {
     @Autowired
     private UserPreferenceService userPreferenceService;
@@ -27,7 +28,7 @@ public class UserPreferenceController {
         String userRedisKey = "";
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("loveinDC_token")) {
-                userRedisKey = cookie.getValue();
+                userRedisKey = "UserKey:" + cookie.getValue();
                 break;
             }
         }
@@ -48,18 +49,6 @@ public class UserPreferenceController {
             return true;
         }
     }
-
-//    @GetMapping("/test")
-//    public ResultVO test() throws Exception {
-//        String serializedUser = "";
-//        System.out.println(stringRedisTemplate.hasKey("key"));
-//        if (stringRedisTemplate.hasKey("key")) {
-//            serializedUser = stringRedisTemplate.opsForValue().get("key");
-//        }
-//        System.out.println(serializedUser);
-//        UserSession userSession = RedisSerialization.deSerialization(serializedUser, UserSession.class);
-//        return ResultVOUtil.success(userSession);
-//    }
 
     @GetMapping("/preference/{id}")
     public ResultVO<UserPreferenceVO> getUserPreferenceById(@PathVariable("id") int id, HttpServletRequest httpServletRequest)

@@ -9,10 +9,13 @@ class UiButton extends Component {
   }
 
   render() {
+    let {buttonType, disabled, buttonName, clickEvent} = this.props;
     return (
-      <button className={"ui-button " + this.props.buttonType} 
-        type="submit" disabled={this.props.disabled}>
-        { this.props.buttonName }
+      <button className={"ui-button " + buttonType} 
+        type="submit" 
+        onClick={clickEvent}
+        disabled={disabled}>
+        { buttonName }
       </button>
     )
   }
@@ -21,7 +24,8 @@ class UiButton extends Component {
 UiButton.propTypes = {
   buttonName: PropTypes.string,
   buttonType: PropTypes.string,
-  buttonDisabled: PropTypes.bool
+  buttonDisabled: PropTypes.bool,
+  clickEvent: PropTypes.func
 }
 
 UiButton.defaultProps = {    
