@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/userpreference")
+@CrossOrigin(origins = "*",allowCredentials = "true")
 public class UserPreferenceController {
     @Autowired
     private UserPreferenceService userPreferenceService;
@@ -60,6 +61,10 @@ public class UserPreferenceController {
 //        UserSession userSession = RedisSerialization.deSerialization(serializedUser, UserSession.class);
 //        return ResultVOUtil.success(userSession);
 //    }
+    @GetMapping("/test")
+    public ResultVO test() {
+        return ResultVOUtil.success();
+    }
 
     @GetMapping("/preference/{id}")
     public ResultVO<UserPreferenceVO> getUserPreferenceById(@PathVariable("id") int id, HttpServletRequest httpServletRequest)
