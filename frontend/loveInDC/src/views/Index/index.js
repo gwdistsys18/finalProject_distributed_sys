@@ -4,19 +4,16 @@ import axios from '../../config/http';
 
 import './index.scss';
 
-class Index extends Component {
-  test() {
-    axios.get("/userpreference/test")
-      .then((ret) => {
-        console.log(ret);
-      });
-  }
+import Header from '../../commons/Header';
 
+class Index extends Component {
   render() {
     return (
-      <div className="index">
-        Love In DC.
-        <button onClick={() => this.test()}/>
+      <div>
+        <Header/>
+        <div className="index">
+          Love In DC.
+        </div>
       </div>
     )
   }

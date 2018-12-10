@@ -24,6 +24,15 @@
     }
   }
   .form-body {
+    p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 17px;
+      text-align: center;
+    }
+    .err-msg {
+      color: #fc5c5c;
+    }
     .ui-button {
       width: 80%;
       position: relative;
