@@ -4,9 +4,16 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/loveInDC?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://18.234.207.159:3306/loveinDC_user?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
     username: root
     password: qwer1234
+
+  redis:
+    host: 18.234.207.159
+    port: 6379
+    poolMaxTotal: 8
+    password: qwer1234
+    timeout: 10s
 
 mybatis:
   mapper-locations: classpath:com/loveindc/preference/dao/*.xml

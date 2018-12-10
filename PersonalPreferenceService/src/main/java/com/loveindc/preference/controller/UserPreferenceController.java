@@ -2,6 +2,7 @@ package com.loveindc.preference.controller;
 
 import RedisService.RedisSerialization;
 import RedisService.UserSession;
+import com.loveindc.preference.enums.ResultEnum;
 import com.loveindc.preference.service.UserPreferenceService;
 import com.loveindc.preference.utils.ResultVOUtil;
 import com.loveindc.preference.vo.ResultVO;
@@ -38,7 +39,6 @@ public class UserPreferenceController {
             throw new Exception();
         }
         UserSession userSession = RedisSerialization.deSerialization(serializedUser, UserSession.class);
-
         // get user id
         Integer uid = 0;
         if (userSession == null) {
@@ -49,21 +49,45 @@ public class UserPreferenceController {
         }
     }
 
+//    @GetMapping("/test")
+//    public ResultVO test() throws Exception {
+//        String serializedUser = "";
+//        System.out.println(stringRedisTemplate.hasKey("key"));
+//        if (stringRedisTemplate.hasKey("key")) {
+//            serializedUser = stringRedisTemplate.opsForValue().get("key");
+//        }
+//        System.out.println(serializedUser);
+//        UserSession userSession = RedisSerialization.deSerialization(serializedUser, UserSession.class);
+//        return ResultVOUtil.success(userSession);
+//    }
+
     @GetMapping("/preference/{id}")
-    public ResultVO<UserPreferenceVO> getUserPreferenceById(@PathVariable("id") int id) {
-        UserPreferenceVO ret = userPreferenceService.getById(id);
-        return ResultVOUtil.success(ret);
+    public ResultVO<UserPreferenceVO> getUserPreferenceById(@PathVariable("id") int id, HttpServletRequest httpServletRequest)
+        throws Exception{
+        if (checkLoginStatus(httpServletRequest)) {
+            UserPreferenceVO ret = userPreferenceService.getById(id);
+            return ResultVOUtil.success(ret);
+        }
+        return ResultVOUtil.error(ResultEnum.USER_NOT_LOGIN);
     }
 
     @PostMapping("/preference/{id}")
-    public ResultVO<UserPreferenceVO> createUserPreference(@PathVariable("id") int id) {
-        UserPreferenceVO ret = userPreferenceService.create(id);
-        return ResultVOUtil.success(ret);
+    public ResultVO<UserPreferenceVO> createUserPreference(@PathVariable("id") int id, HttpServletRequest httpServletRequest)
+        throws Exception{
+        if (checkLoginStatus(httpServletRequest)) {
+            UserPreferenceVO ret = userPreferenceService.create(id);
+            return ResultVOUtil.success(ret);
+        }
+        return ResultVOUtil.error(ResultEnum.USER_NOT_LOGIN);
     }
 
     @PutMapping("/preference")
-    public ResultVO<UserPreferenceVO> updateUserPreference(UserPreferenceVO userPreferenceVO) {
-        UserPreferenceVO ret = userPreferenceService.update(userPreferenceVO);
-        return ResultVOUtil.success(ret);
+    public ResultVO<UserPreferenceVO> updateUserPreference(UserPreferenceVO userPreferenceVO, HttpServletRequest httpServletRequest)
+        throws Exception{
+        if (checkLoginStatus(httpServletRequest)) {
+            UserPreferenceVO ret = userPreferenceService.update(userPreferenceVO);
+            return ResultVOUtil.success(ret);
+        }
+        return ResultVOUtil.error(ResultEnum.USER_NOT_LOGIN);
     }
 }

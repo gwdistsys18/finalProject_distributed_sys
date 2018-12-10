@@ -1,20 +1,11 @@
 package RedisService;
 
+import lombok.Data;
+import lombok.Getter;
+
+@Data
 public class UserSession {
     private Integer id;
+    private String email;
     private boolean completeness;
-
-    //getter & setter
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public boolean isCompleteness() {
-        return completeness;
-    }
-    public void setCompleteness(boolean completeness) {
-        this.completeness = completeness;
-    }
 }
