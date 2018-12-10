@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "table_PersonalInfo")
 public class PersonalInfo {
 	@Id
-	@Column(name = "uid", nullable = false, unique = true)
-	private Integer uid;
+	@Column(name = "id", nullable = false, unique = true)
+	private Integer id;
 	@Column(name = "firstName")
 	private String firstName;
 	@Column(name = "lastName")
@@ -31,11 +31,11 @@ public class PersonalInfo {
 	private String major;
 	
 	//Getters and Setters
-	public Integer getUid() {
-		return uid;
+	public Integer getId() {
+		return id;
 	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -89,7 +89,7 @@ public class PersonalInfo {
 	//ToString
 	@Override
 	public String toString() {
-		return "PersonalInfo [uid=" + uid + ", firstName=" + firstName + ", lastName=" + lastName + ", nickName="
+		return "PersonalInfo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nickName="
 				+ nickName + ", birthDate=" + birthDate + ", gender=" + gender + ", phoneNumber=" + phoneNumber
 				+ ", college=" + college + ", major=" + major + "]";
 	}
