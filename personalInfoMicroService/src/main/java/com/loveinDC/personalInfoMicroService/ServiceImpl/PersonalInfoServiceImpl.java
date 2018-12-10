@@ -16,9 +16,9 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 	private PersonalInfoJpaDAO personalInfoJpaDao;
 	
 	@Override
-	public PersonalInfo findByUid(Integer uid) {
+	public PersonalInfo findById(Integer id) {
 		// TODO Auto-generated method stub
-		return personalInfoJpaDao.findByUid(uid);
+		return personalInfoJpaDao.findById(id);
 	}
 
 	@Override
@@ -28,11 +28,11 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 	}
 
 	@Override
-	public int delete(Integer uid) {
+	public int delete(Integer id) {
 		// TODO Auto-generated method stub
-		int i = personalInfoJpaDao.deleteByUid(uid);
+		int i = personalInfoJpaDao.deleteById(id);
 		System.out.println("delete" + i);
-		if(personalInfoJpaDao.findByUid(uid) == null) {
+		if(personalInfoJpaDao.findById(id) == null) {
 			return 1;
 		} else {
 			return 0;
