@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +21,17 @@ import RedisService.UserSession;
 
 @Component
 @RestController
-@RequestMapping("/personalInfo")
+@RequestMapping("/api/personalInfo")
 public class PersonalInfoController {
 	@Autowired
 	private PersonalInfoService personalInfoService;
 	@Autowired
 	StringRedisTemplate stringRedisTemplate;
+	
+	@RequestMapping("/")
+	public String index() {
+		return "Hello from personalInfo micro service of Love in DC";
+	}
 	
 	@RequestMapping("/create")
 	public String createPersonalInfo(HttpServletRequest httpServletRequest) throws Exception{
@@ -48,7 +54,7 @@ public class PersonalInfoController {
 		else return "Delete failed";
 	}
 	
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	public PersonalInfo updatePersonalInfo(HttpServletRequest httpServletRequest) throws Exception {	
 //			@RequestParam(value = "uid", required = true) Integer uid,
 //			@RequestParam(value = "firstName", required = false) String firstName,
