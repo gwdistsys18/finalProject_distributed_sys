@@ -4,9 +4,10 @@ package com.zz.yuan_user.controller;
 import com.zz.yuan_user.result.Result;
 import com.zz.yuan_user.service.UserService;
 import com.zz.yuan_user.vo.LoginVo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,14 +16,14 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/login")
-@Slf4j
+@CrossOrigin(origins = "*",allowCredentials = "true")
 public class LoginController {
 
     @Autowired
     private UserService userService;
 
 
-    @RequestMapping("/do_login")
+    @PostMapping
     @ResponseBody
     public Result<String> do_login(@Valid LoginVo loginVo, HttpServletResponse response){
         // log.info(loginVo.toString());\
