@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rimraf dist",
     "open": "opener http://localhost:8081",
-    "build": "webpack --config build/webpack.pord.config.js",
+    "build": "webpack --config build/webpack.prod.config.js",
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "server": "webpack-dev-server --devtool eval --progress --colors --hot --config build/webpack.dev.config.js --mode development"
   },
