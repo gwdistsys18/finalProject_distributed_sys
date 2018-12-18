@@ -135,7 +135,7 @@ Return
     "msg": "success",
     "data": {
         
-    } q	
+    }	
 }
 ```
 
@@ -155,7 +155,20 @@ none
 
 Return
 ```
-
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "firstName": String
+        "lastName": String
+        "nickName": String
+        "birthDate": String
+        "gender": String
+        "college": String
+        "major": String
+        "phoneNumber": String
+    }
+}
 ```
 
 * Delete personal infomation
@@ -172,7 +185,13 @@ none
 
 Return
 ```
-
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        
+    }
+}
 ```
 
 * Update personal infomation
@@ -199,7 +218,20 @@ json
 
 Return
 ```
-
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "firstName": String
+        "lastName": String
+        "nickName": String
+        "birthDate": String
+        "gender": String
+        "college": String
+        "major": String
+        "phoneNumber": String
+    }
+}
 ```
 
 * Find self personal infomation
@@ -216,10 +248,23 @@ none
 
 Return
 ```
-
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "firstName": String
+        "lastName": String
+        "nickName": String
+        "birthDate": String
+        "gender": String
+        "college": String
+        "major": String
+        "phoneNumber": String
+    }
+}
 ```
 
-* Find All personal infomation (Don't Use Yet)
+* Find All personal infomation (Reserved, don't Use this function)
 
 ```
 GET /api/personalInfo/findAll
@@ -233,6 +278,6 @@ none
 
 Return
 ```
-
+TBD
 ```
 
