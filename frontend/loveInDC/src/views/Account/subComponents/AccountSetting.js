@@ -36,6 +36,9 @@ class AccountSetting extends Component {
   componentWillMount() {
     getUserInfo(({data}) => {
       console.log(data);
+      if (data.data.birthDate == null) {
+        data.data.birthDate = "2018-12-18"
+      }
       this.setState({
         userData: {...data.data}
       });
