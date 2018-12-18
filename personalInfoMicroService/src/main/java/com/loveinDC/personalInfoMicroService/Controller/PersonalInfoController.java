@@ -135,7 +135,8 @@ public class PersonalInfoController {
 			return ResultVOUtil.error(ResultEnum.USER_NOT_LOGIN);
 		}
 		try {
-			PersonalInfoVO personalInfoVO = PersonalInfoDAOtoVO.personalInfoDAOtoVO(personalInfoService.findById(id));
+			PersonalInfo personInfo = personalInfoService.findById(id);
+			PersonalInfoVO personalInfoVO = PersonalInfoDAOtoVO.personalInfoDAOtoVO(personInfo);
 			return ResultVOUtil.success(personalInfoVO);
 		} catch (Exception e) {
 			return ResultVOUtil.error(ResultEnum.SERVER_ERROR);
@@ -155,7 +156,7 @@ public class PersonalInfoController {
 			Cookie[] cookies = httpServletRequest.getCookies();
 			String userRedisKey = "";
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("loveinDC_token")) {
+				if (cookie != null && cookie.getName().equals("loveinDC_token")) {
 					userRedisKey = "UserKey:tk" + cookie.getValue();
 					break;
 				}
