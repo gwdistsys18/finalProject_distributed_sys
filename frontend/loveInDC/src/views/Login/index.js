@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import qs from 'qs';
 
 import './index.scss';
@@ -11,6 +10,10 @@ import UiButton from '../../components/UiButton';
 import { login } from '../../request/auth';
 import { validEmail } from '../../utils/validate';
 import info from '../../utils/store';
+
+const error = () => {
+  message.error('This is a message of error');
+};
 
 class Login extends Component {
   constructor(props) {
@@ -43,6 +46,12 @@ class Login extends Component {
   checkEmpty() {
     return this.state.email == "" || this.state.password == ""; 
   }
+  
+  errorPrompt(msg) {
+    this.setState({
+      errMsg: msg
+    });
+  }
 
   isDisabled() {
     return this.checkEmpty();
@@ -59,11 +68,15 @@ class Login extends Component {
       password: password
     }, ({data}) => {
       if (data.code == 0) {
-        localStorage.setItem("userId", data.data.id)
-        location.href = '/#/account';
+        console.log(data.data);
+        localStorage.setItem("userId", data.data.id);
+        localStorage.setItem("username", data.data.username);
+        location.href = '/#/';
+      } else {
+        this.errorPrompt(data.msg);
       }
     }, (err) => {
-      
+      this.errorPrompt("Login Error");
     });
   }
 

@@ -1,4 +1,15 @@
-.index {
-  margin: 200px auto 0;
-  text-align: center;
+
+
+main {
+  .tu {
+    display: block;
+    padding-top: 197px;
+    position: relative;
+    height: 561px;
+    background-image: url("../../assets/main.png");
+    -moz-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
 }

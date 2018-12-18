@@ -29,25 +29,6 @@ class Register extends Component {
     }
   }
 
-  signUp() {
-    let {email, password} = this.state;
-    if (!validEmail(email)) return;
-    if (this.checkEmpty()) return;
-    signup({
-      username: email,
-      password: password
-    }, ({data}) => {
-      if (data.code == 0) {
-        alert("Sign Up Success");
-        location.href="/#/account";
-      } else {
-        alert(data.msg);
-      }
-    }, (err) => {
-      console.log(err);
-    });
-  }
-
   changeEmail(email) {
     let errMsg = "";
     if (!validEmail(email)) {
@@ -82,12 +63,37 @@ class Register extends Component {
       || this.state.rePassword == "";
   }
 
+  errorPrompt(msg) {
+    this.setState({
+      errMsg: msg
+    });
+  }
+
   isDisabled() {
     return this.checkEmpty();
   }
 
+  signUp() {
+    let {email, password} = this.state;
+    if (!validEmail(email)) return;
+    if (this.checkEmpty()) return;
+    signup({
+      username: email,
+      password: password
+    }, ({data}) => {
+      if (data.code == 0) {
+        alert("Sign Up Success");
+        location.href="/#/login";
+      } else {
+        alert(data.msg);
+      }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   render() {
-    
+    let { errMsg, email, password, rePassword } = this.state;
     return (
       <form className="register-form">
         <div className="form-head">
@@ -98,10 +104,10 @@ class Register extends Component {
           </p>
         </div>
         <div className="form-body">
-          <p className="err-msg" >{this.state.errMsg}</p>
-          <UiInput name={"Email"} value={this.state.email} handleChange={this.changeEmail.bind(this)}/>
-          <UiInput name={"Password"} type={"password"} value={this.state.password} handleChange={this.changePassword.bind(this)}/>
-          <UiInput name={"Repeat Password"} type={"password"} value={this.state.rePassword} handleChange={this.changeRePassword.bind(this)}/>
+          <p className="err-msg" >{errMsg}</p>
+          <UiInput name={"Email"} value={email} handleChange={this.changeEmail.bind(this)}/>
+          <UiInput name={"Password"} type={"password"} value={password} handleChange={this.changePassword.bind(this)}/>
+          <UiInput name={"Repeat Password"} type={"password"} value={rePassword} handleChange={this.changeRePassword.bind(this)}/>
           <UiButton buttonName={"SignUp"}
             buttonType={"ui-button--primary"}
             clickEvent={() => this.signUp()}

@@ -9,15 +9,24 @@ class Header extends Component {
   }
 
   render() {
+    let username = localStorage.getItem("username");
     return (
-      <div className="head-nav">
-        <div className="header-nav-center">
-
+      <header>
+        <a className="brand" href="/#"/>
+        <div className="menu">
+          <a href="/#" className="center">Center</a>
+          <a href="/#" className="community">Community</a>
+          <a href="/#" className="activity">Activity</a>
         </div>
-        <div className="header-nav-right">
-          
+        <div className="user">
+          {
+            username == undefined ? 
+              <p>Please <a href="/#/login">Login</a></p>
+              :
+              <p>Welcome, <a href="/#/account">{username}</a></p>
+          }
         </div>
-      </div>
+      </header>
     )
   }
 }

@@ -5,12 +5,14 @@ import Index from './views/Index';
 import Login from './views/Login';
 import Register from './views/Register';
 import Account from './views/Account';
+import Header from './commons/Header';
 
 class App extends Component {
   render() {
     return (
       <HashRouter>
         <div>
+          <Header/>
           <div className="main-wrapper">
             <Route path="/" exact component={Index}></Route>
             <Route path="/login" exact component={Login}></Route>

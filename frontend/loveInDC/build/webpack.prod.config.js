@@ -6,6 +6,9 @@ const baseWebpackConfig = require('./webpack.base.config.js');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
+  output: {
+    publicPath: 'http://18.234.207/159'
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../public/index.html'),

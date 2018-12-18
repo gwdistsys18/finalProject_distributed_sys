@@ -10,10 +10,11 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <Header/>
-        <div className="index">
-          Love In DC.
-        </div>
+        <main>
+          <section className="tu">
+
+          </section>
+        </main>
       </div>
     )
   }

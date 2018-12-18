@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { message } from 'antd';
 
 import UiRadio from "../../../components/UiRadio";
 import UiButton from "../../../components/UiButton";
 
 import info from "../../../utils/store";
 import { getUserInfoById, updateUserPreferenceById } from "../../../request/userPreference";
+
+const save = () => {
+  const hide = message.loading('Save in progress..', 0);
+  // Dismiss manually and asynchronously
+  setTimeout(hide, 100);
+}
 
 class Preferences extends Component {
   constructor(props) {
@@ -73,7 +80,7 @@ class Preferences extends Component {
         <form>
           {radioList}
           <UiButton buttonName="Save" buttonType={"ui-button--primary"} clickEvent={() => {
-            console.log('update');
+            save();
             this.updatePreference(this.state.userId);
           }}/>
         </form>
