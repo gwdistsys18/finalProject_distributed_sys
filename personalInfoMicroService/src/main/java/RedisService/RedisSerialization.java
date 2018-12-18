@@ -14,7 +14,7 @@ public class RedisSerialization {
 				|| clazz == null) {
 			throw new Exception("Fail to anti-serialize");
 		}
-		if (clazz.getName() == "UserSession") {
+		if (clazz.getName() == "RedisService.UserSession") {
 			return JSON.toJavaObject(JSON.parseObject(serializedUserSession),clazz);
 		}
 		return null;
