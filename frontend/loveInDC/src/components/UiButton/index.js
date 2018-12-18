@@ -11,8 +11,8 @@ class UiButton extends Component {
   render() {
     let {buttonType, disabled, buttonName, clickEvent} = this.props;
     return (
-      <button className={"ui-button " + buttonType} 
-        type="submit" 
+      <button type="button" 
+        className={"ui-button " + buttonType}
         onClick={clickEvent}
         disabled={disabled}>
         { buttonName }

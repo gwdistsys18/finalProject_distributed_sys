@@ -2,9 +2,9 @@
 -- User Login Table
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
-  `salt` varchar(10) DEFAULT NULL,
+  `salt` varchar(32) DEFAULT NULL,
   `completeness` tinyint(1) unsigned zerofill DEFAULT '0',
   `register_date` datetime DEFAULT NULL,
   `last_login_date` datetime DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `user` (
 CREATE TABLE `table_personal_info` (
   `id` bigint(20) NOT NULL,
   `birth_date` varchar(10) DEFAULT NULL,
-  `collage` varchar(255) DEFAULT NULL,
+  `college` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `gender` char(1) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
@@ -45,5 +45,16 @@ create table `user_preference` (
   FOREIGN KEY (`id`) references user(`id`)
     on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Trigger --
+-- Add basic infomations after creating a user
+DELIMITER $$
+create trigger createUserPreference
+after insert on user for each row
+BEGIN
+	insert into user_preference(id) values(new.id);
+	insert into table_personal_info(id) values(new.id);
+END$$
+DELIMITER ;
 ```
 
