@@ -17,7 +17,7 @@ class Account extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: menuList[2]
+      selectedTab: menuList[0]
     };
   }
 

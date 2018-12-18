@@ -11,12 +11,13 @@ class UiRadio extends Component {
   render() {
     let {title, dict} = this.props;
     return (
-      <div className="radio-group" onChange={(e) => this.props.handleChange(e.target.value)}>
+      <div className="radio-group">
         <p className="title">{title}</p>
         {
           Object.keys(dict).map((item, ind) => (
             <label className="radio" key={ind}>
-              <input name={title} value={dict[item]} type="radio" defaultChecked={dict[item] == this.props.check}/>
+              <input name={title} value={dict[item]} type="radio" checked={dict[item] == this.props.check}
+              onChange={(e) => { this.props.handleChange(e.target.value) }}/>
               <span className="radio-label">{item}</span>
             </label>
           ))

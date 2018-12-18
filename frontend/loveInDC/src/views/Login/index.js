@@ -10,6 +10,7 @@ import UiButton from '../../components/UiButton';
 
 import { login } from '../../request/auth';
 import { validEmail } from '../../utils/validate';
+import info from '../../utils/store';
 
 class Login extends Component {
   constructor(props) {
@@ -57,12 +58,12 @@ class Login extends Component {
       username: email,
       password: password
     }, ({data}) => {
-      console.log(data);
       if (data.code == 0) {
-        location.href = '/#/';
+        localStorage.setItem("userId", data.data.id)
+        location.href = '/#/account';
       }
     }, (err) => {
-      console.log(err);
+      
     });
   }
 

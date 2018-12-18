@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 
 import './index.scss';
 
+// Components
 import UiInput from '../../components/UiInput';
 import UiButton from '../../components/UiButton';
 
+// Request
 import { signup } from '../../request/auth';
+import { addUserInfoById } from '../../request/userPreference';
+
+// Utils
 import { validEmail } from '../../utils/validate';
 
 const errStyle = {
@@ -32,10 +37,9 @@ class Register extends Component {
       username: email,
       password: password
     }, ({data}) => {
-      console.log(data);
       if (data.code == 0) {
         alert("Sign Up Success");
-        location.href="/#/login";
+        location.href="/#/account";
       } else {
         alert(data.msg);
       }
